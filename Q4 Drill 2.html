@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+background-image:url("https://i.pinimg.com/originals/21/f4/c7/21f4c752484ecfc057cd793f9758ed92.gif");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+font-family:Arial, Helvetica, sans-serif;
+color:white;
+}
+
+.container-box{
+max-width:420px;
+margin:auto;
+margin-top:80px;
+padding:35px;
+background:rgba(10,25,50,0.85);
+border-radius:12px;
+box-shadow:0 6px 18px rgba(0,0,0,0.5);
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+font-weight:600;
+}
+
+details{
+margin-bottom:20px;
+}
+
+input{
+margin-bottom:18px;
+padding:10px;
+}
+
+button{
+width:100%;
+padding:10px;
+background-color:#1f4e8c;
+border:none;
+}
+
+button:hover{
+background-color:#2d63ad;
+}
+
+#result{
+margin-top:20px;
+font-size:18px;
+font-weight:500;
+text-align:center;
+}
+
+.source{
+margin-top:25px;
+font-size:14px;
+text-align:center;
+}
+
+a{
+color:#9cc9ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container-box">
+<h1>heat index checker</h1>
+<details ontoggle="showNote()">
+<summary>guidelines!!!</summary>
+
+<p>
+Enter the temperature in °C and humidity in %.  
+Click <b>Check Heat Index</b> to see how hot it feels and the status.
+</p>
+
+</details>
+
+<label>temperature (°C)</label>
+<input type="number" id="temp" class="form-control">
+
+<label>humidity (%)</label>
+<input type="number" id="humidity" class="form-control">
+
+<button class="btn btn-primary" onclick="checkHeat()">check heat index</button>
+<p id="result"></p>
+
+</div>
+<script>
+function showNote(){
+console.log("Instructions toggled");
+}
+
+function checkHeat(){
+let temperature = Number(document.getElementById("temp").value);
+let humidity = Number(document.getElementById("humidity").value);
+let heatIndex = temperature + (0.33 * humidity) - 4;
+let status;
+
+if(heatIndex <= 27){
+status = "comfortable / cool";
+}
+else if(heatIndex <= 32){
+status = "warm";
+}
+else if(heatIndex <= 37){
+status = "hot";
+}
+else if(heatIndex <= 41){
+status = "very hot / caution !";
+}
+else{
+status = "extreme heat / !! danger !!";
+}
+
+window.alert("Heat Index: " + heatIndex.toFixed(1) + "°C\nStatus: " + status);
+document.getElementById("result").innerHTML =
+"Heat Index: <b>" + heatIndex.toFixed(1) + "°C</b><br>Status: " + status;
+}
+
+</script>
+</body>
+</html>
